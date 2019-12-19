@@ -2,6 +2,7 @@ import Torre from './src/torre.js';
 import Base from './src/base.js';
 import Enemigo from './src/enemigo.js';
 import Nucleo from './src/nucleo.js';
+import Hydra from './src/unidades/hydra.js';
 import Ciclope from './src/unidades/ciclope.js';
 import {getNivelActual} from './src/mapa.js';
 
@@ -38,7 +39,6 @@ export default class Game extends Phaser.Scene {
     this.load.spritesheet("hydraIzq", "./assets/hydraIzq.png", { frameWidth: 64, frameHeight: 65 });
     this.load.spritesheet("hydraDer", "./assets/hydraDer.png", { frameWidth: 64, frameHeight: 59 });
     this.load.spritesheet("ciclopeIzq", "./assets/ciclopeIzq.png", { frameWidth: 64.67, frameHeight: 63 });
-    this.load.spritesheet("ciclopeDer", "./assets/ciclopeDer.png", { frameWidth: 73, frameHeight: 56 });
     this.load.spritesheet("diabloIzq", "./assets/diabloIzq.png", { frameWidth: 32.67, frameHeight: 29 });
     this.load.spritesheet("diabloDer", "./assets/diabloDer.png", { frameWidth: 31.83, frameHeight: 18 });
   }
@@ -131,12 +131,6 @@ export default class Game extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers("ciclopeIzq", { start: 0, end: 5 }),
       frameRate: 4,
       repeat: -1
-   });
-   this.anims.create({
-     key: 'ciclopeDer',
-     frames: this.anims.generateFrameNumbers("ciclopeDer", { start: 0, end: 5 }),
-     frameRate: 4,
-     repeat: -1
    });
     this.anims.create({
       key: 'diabloIzq',
@@ -280,7 +274,7 @@ export default class Game extends Phaser.Scene {
         this.casillaUnidad(casilla, 84, 698, 1.5, "hydraDer");
         break;
       case 1:
-        this.casillaUnidad(casilla, 120, 698, 2.25, "ciclopeDer");
+        this.casillaUnidad(casilla, 120, 698, 2.25, "ciclopeIzq");
         break;
     }
   }
@@ -293,11 +287,11 @@ export default class Game extends Phaser.Scene {
         this.seleccUnidad(casilla, this.unid0, tipo);
         break;
       case 1:
-        this.unid1 = this.add.image(x + 135, y, tipo).setScale(tam).setInteractive();;
-        this.seleccUnidad(casilla, this.unid1, tipo);
+        this.unid0 = this.add.image(x + 135, y, tipo).setScale(tam).setInteractive();
+        this.seleccUnidad(casilla, this.unid0, tipo);
         break;
       case 2:
-        this.unid2 = this.add.image(x + 270, y, tipo).setScale(tam).setInteractive();;;
+        this.unid2 = this.add.image(x + 270, y, tipo).setScale(tam).setInteractive();
         this.seleccUnidad(casilla, this.unid2, tipo);
         break;
     }
@@ -311,7 +305,7 @@ export default class Game extends Phaser.Scene {
           case "hydraDer":
             this.unidades.add(new Hydra(this, this.posXUnid, this.posYUnid, this.posRelativa));
             break;
-          case "ciclopeDer":
+          case "ciclopeIzq":
             this.unidades.add(new Ciclope(this, this.posXUnid, this.posYUnid, this.posRelativa));
             break;
         }

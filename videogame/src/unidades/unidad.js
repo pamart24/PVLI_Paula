@@ -1,8 +1,8 @@
 import GameObjectsGO from "../gameObjects.js";
 
 export default class Unidad extends GameObjectsGO {
-    constructor(scene, daño, x, y, posRelativa, cad, type){ 
-        super(scene, daño, x, y, cad, type);
+    constructor(scene, daño, x, y, posRelativa, cad, tam){ 
+        super(scene, daño, x, y, cad, "");
         this.alpha = 0;
         this.game = scene;
         scene.add.existing(this);
@@ -23,7 +23,7 @@ export default class Unidad extends GameObjectsGO {
 
         //LA ANIMACIÓN SE HACE GENERANDO UN SPRITE ENCIMA DE LA UNIDAD, QUE TIENE UNA TEXTURA VACÍA, PORQUE LA ANIMACIÓN AL HACERLA CON UNA CLASE EN LUGAR DE UN SPRITE
         //ME HA PARECIDO IMPOSIBLE DE CONSEGUIR. CON AYUDA DE COMPAÑEROS QUE LO HAN LOGRADO TAMPOCO LO HE CONSEGUIDO. HE PROCEDIDO A UTILIZAR EL MÉTODO QUE ME ACONSEJÓ DAVID CZEPIEL
-        this.animacion = this.game.add.sprite(x, y, type);
+        this.animacion = this.game.add.sprite(x, y, "").setScale(tam);
     }
 
     //MOVIMIENTO DE LA UNIDAD
@@ -32,7 +32,7 @@ export default class Unidad extends GameObjectsGO {
             switch (this.game.nivel) {
                 case 1:
                     if (this.cambiaAnim) {
-                        this.animacion.play('hydraIzq');
+                        this.animacion.play(this.animIzq);
                         this.cambiaAnim = false;
                     }
                     this.setPosition(this.t * 25, this.n + 150 * Math.sin(this.t/7));
@@ -45,8 +45,8 @@ export default class Unidad extends GameObjectsGO {
                     //CADA CAMINO ESTÁ FORMADO POR 2 FUNCIONES CADA UNO
                     if (this.funcion == 0) {
                         if (this.cambiaAnim) {
-                            if (this.dir == 0) this.animacion.play('hydraDer');
-                            if (this.dir == 1) this.animacion.play('hydraIzq');
+                            if (this.dir == 0) this.animacion.play(this.animDer);
+                            if (this.dir == 1) this.animacion.play(this.animIzq);
                             this.cambiaAnim = false;
                         }
                         let y0 = Math.sqrt(1 - (Math.pow(Math.abs(this.t/7) - 1, 2)));
@@ -65,8 +65,8 @@ export default class Unidad extends GameObjectsGO {
                     }
                     if (this.funcion == 1) {
                         if (this.cambiaAnim) {
-                            if (this.dir == 0) this.animacion.play('hydraIzq');
-                            if (this.dir == 1) this.animacion.play('hydraDer');
+                            if (this.dir == 0) this.animacion.play(this.animIzq);
+                            if (this.dir == 1) this.animacion.play(this.animDer);
                             this.cambiaAnim = false;
                         }
                         let y1 = -2.5 * Math.sqrt(1 - Math.sqrt(Math.abs(this.t/7) / 2));
