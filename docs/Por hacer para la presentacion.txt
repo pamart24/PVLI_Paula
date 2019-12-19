@@ -1,0 +1,14 @@
+MARCO
+fusionar races con warzones
+races.html -> buscar 3 imagenes de muñecos y escribir una breve descripción sobre como conseguirlas
+warzones.html -> subir imagen (quitarle el menu) y esplicar por colores las zonas y un poco 
+sec.html -> poner bocetos de las pantallas 
+
+PAULA
+doc.html   -> Poner link git
+sec.html -> hacer boceto de pantalla de juego
+towers.html -> buscar dos imagenes de torres para simular una evolucion en una diapo
+
+JUNTOS
+definir colores y posibles fondos de secciones
+play.html -> definir fondo para mejor lectura, añadir estetica (lore) 

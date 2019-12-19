@@ -1,0 +1,48 @@
+<HTML>
+    <HEAD>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="favicon.png" type="image/png" />
+        <meta name="viewport" content="width=device-width, initial-scale=2.0">
+        <link rel="stylesheet" href="game.css">
+        <script src="phaser.min.js"></script>
+        <LINK href="../css.css" rel="StyleSheet" type="text/css" media="screen"/>
+        <meta name=viewport content="width=devide-width, initial-scale=1, user-sacalable=yes"/>
+        <title>TheWhoStudios</title>
+    </HEAD>
+
+    <BODY>
+        <div id="nav">
+            <ul class="menu">
+                <li><a href="indexGame.html">¡Juega!</a></li>				
+                <li><a href="../index.html">Contacto</a></li>
+            </ul>
+        </div>
+        <div id="game">
+            <script type="module">
+                    import Game from './game.js';
+                    import Mapa from './src/mapa.js';
+                    import Derrota from './src/derrota.js';
+                    import Victoria from './src/victoria.js';
+                    import Pausa from './src/escenas/pausa.js';
+            
+                    var config = {
+                        type: Phaser.AUTO,
+                        width: 1400,
+                        height: 800,
+                        pixelArt: true,
+                        backgroundColor: 'transparent',
+                        input: {
+                            gamepad: true
+                        },
+                        scale: {
+                            mode: Phaser.Scale.FIT,
+                            // autoCenter: Phaser.Scale.CENTER_BOTH
+                        },
+                        scene: [ Mapa, Game, Derrota, Victoria, Pausa ],
+                        physics: { default: 'arcade', arcade: { debug: false } }
+                    };
+                    new Phaser.Game(config);
+                </script>
+        </div>
+    </BODY>
+</HTML>

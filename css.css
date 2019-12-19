@@ -1,0 +1,383 @@
+/********************************************/
+/*										   */
+/* 		 FONTS       			     	  */
+/*										 */
+/****************************************/
+
+/* Importing Google Fonts */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700,800);
+
+/* Personal fonts - Have been downloaded from: https://www.dafont.com */
+@font-face { font-family: "DL"; src: url('../fonts/28DaysLater.ttf'); }
+@font-face { font-family: "BC"; src: url('../fonts/Bleeding Cowboys.ttf'); }
+@font-face { font-family: "AP"; src: url('../fonts/AdmirationPains.ttf'); }
+
+
+
+/********************************************/
+/*										   */
+/* 			GENERAL SETTINGS        	  */
+/*										 */
+/****************************************/
+
+/* -------------------------------------- / General/Body */
+* {
+	margin: 0px;
+	padding: 0px; 
+	outline: 0;
+	margin:0 auto;}
+
+body{
+	background-image: url("../images/bosqueFondo.jpg");
+	color:#3E4156;
+	font: 14px "Open Sans", Helvetica, Verdana, Arial, Sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	line-height:1;
+	width:70%;}
+
+/* -------------------------------------- / Img's */
+img{	
+	width:100%;
+	height:auto;
+	border:3px solid white;
+	border-radius:25px;}
+	
+img:hover{
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+	transition:0.5s;}
+
+/* -------------------------------------- / Hr's */	
+hr{margin:2% 0% 2% 0%;}
+
+/* -------------------------------------- / H's */
+h1{
+	font: 1.8em BC !important;
+	margin:4% 0% 4% 0%;
+	text-align:center;
+	color:black;}	
+h2{margin:3% 0% 1% 0%;font-size:1.6em;}
+h3{margin:2% 0% 3% 0%;font-size:1.4em;}
+h4{margin:1% 0% 2% 0%;font-size:1.2em;}
+
+/* -------------------------------------- / a's */
+a{
+	color:black;
+	font-weight:bold;
+	text-decoration:none;}
+	
+a:hover{
+	color:#BA0707;
+	text-decoration:underline;
+	transition:0.4s;}
+
+/* -------------------------------------- / Marquee's */
+marquee{margin-bottom:1%;font-style:italic;}
+
+/* -------------------------------------- / Table's */
+table{border-collapse:collapse;border:5px solid #3E4156;padding:1%;}
+td{border:2px solid black;padding:1%;}
+th{border:5px solid #3E4156;padding:3%;}
+
+/********************************************/
+/*										   */
+/*           PRINCIPAL MENU               */
+/*										 */
+/****************************************/
+
+/* -------------------------------------- / MENU POSITION */
+#nav{
+	font-size:1.1em;
+	z-index:1;
+	display:block;
+	background:#7fb6d7;	/*#30B0E8;*/
+	background: rgba(127,182,215,1);
+	background: -moz-linear-gradient(left, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(127,182,215,1)), color-stop(62%, rgba(179,222,215,1)), color-stop(100%, rgba(173,220,236,1)));
+	background: -webkit-linear-gradient(left, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1)100%);
+	background: -o-linear-gradient(left, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1) 100%);
+	background: -ms-linear-gradient(left, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1) 100%);
+	background: linear-gradient(to right, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7fb6d7', endColorstr='#addcec', GradientType=1);
+	border-radius: 0px 0px 10px 10px;
+	-moz-border-radius: 0px 0px 10px 10px;
+	-webkit-border-radius: 0px 0px 10px 10px;
+	border: 0px solid #000000;}
+	
+.menu li{	display: inline-block;position: relative;}
+.menu li:hover > ul{display: block;}	
+.menu ul li {display:block;}	
+.menu, ul, li{z-index:1;}
+.menu ul:hover{color:white;}
+
+/* -------------------------------------- / MENU STYLES */
+.menu li a {
+	display:block;				
+	font-weight:bold;			
+	text-decoration:none;		
+	padding:18px;				
+	font-weight:bold;
+	color:#152C91;}				
+
+/* -------------------------------------- / MENU STYLES : HOVER */
+.menu li:hover{background:#152C91;transition:0.7s;}
+.menu li a:hover{color:#30B0E8;}
+
+/* -------------------------------------- / SUBMENU POSITION */
+.menu ul {
+	display: none;
+	width: 250px;				
+	position: absolute; 		
+	top: 50px;					
+	left: 0px;}					
+
+
+/* -------------------------------------- / SUBMENU STYLES */
+.menu ul li a {	
+	font-size:13px;						
+	font-weight:normal;	
+	color:#797979;					
+	border-left:11px solid #ffffff;	
+	background:#ffffff;
+	opacity:1;}			
+
+/* -------------------------------------- / SUBMENU STYLES: HOVER */
+.menu ul li a:hover{
+	transition:0.1s;
+	background:#152C91;
+	border-left:5px solid #7fb6d7;	
+	font-size:15px;					
+	font-weight:bold;
+	color:#30B0E8;}
+
+
+/********************************************/
+/*										   */
+/*            SHARED ITEMS IN .HTML       */
+/*										 */
+/****************************************/
+
+/* -------------------------------------- / BANNER SECTIONs */
+#banner{width:100%;opacity:1;}
+	
+	/* Reset Styles*/
+	#banner img {border-radius:0px;border:0px;height: 20%;}
+	#banner img:hover{-webkit-transform: none;transform: none;} 
+
+
+/* -------------------------------------- / CONTAINER SECTIONs */	
+#container{	
+	width:100%;
+	min-height:550px;
+	height:auto;
+	float:left;
+	overflow:hidden;}
+	
+	#container p{padding-top:15px;text-align:center;}	
+
+
+/* -------------------------------------- / TXT SECTIONs */
+#txt{
+	width:100%;
+	min-height:650px;
+	height:auto;
+	float:left;
+	margin-bottom:4%;
+	font-size:1.3em;
+	line-height:1.5em;
+	font-family:DC !important;	
+	}
+	
+	#txt img{width:5%;height:auto;}
+
+#txtdiv{background:rgba(255,255,255,0.6);}
+
+/* -------------------------------------- / FOOT SECTIONs */
+#foot{
+	float:left;
+	background:#30B0E8;
+	width:100%;
+	height:7%;
+	text-align:center;
+	border-radius: 30px 30px 30px 30px;
+	-moz-border-radius: 30px 30px 30px 30px;
+	-webkit-border-radius: 30px 30px 30px 30px;
+	border: 0px solid #000000;
+	background:#7fb6d7;
+	background: rgba(127,182,215,1);
+	background: -moz-linear-gradient(left, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(127,182,215,1)), color-stop(62%, rgba(179,222,215,1)), color-stop(100%, rgba(173,220,236,1)));
+	background: -webkit-linear-gradient(left, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1)100%);
+	background: -o-linear-gradient(left, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1) 100%);
+	background: -ms-linear-gradient(left, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1) 100%);
+	background: linear-gradient(to right, rgba(127,182,215,1) 0%, rgba(179,222,215,1) 62%, rgba(173,220,236,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7fb6d7', endColorstr='#addcec', GradientType=1);
+	opacity:0.4;}
+
+	#foot a{
+		font-size:0.9em;
+		position:relative;
+		top:40%;
+		text-decoration:none;
+		color:black;
+		font-weight:bold;}
+
+/* -------------------------------------- / Game */	
+#game{
+	width:100%;
+	min-height:70px;
+	height:auto;
+	float:left;
+	overflow:hidden;
+}
+
+/********************************************/
+/*										   */
+/*           SPECIFIC ITEMS IN .HTML      */
+/*										 */
+/****************************************/
+
+/* -------------------------------------- / INIT - THEWHOSTUDIOS */
+#present{
+	position:relative;
+	width:100%;
+	min-height:550px;
+	height:auto;
+	float:left;	
+	overflow:hidden;}
+	
+#present marquee img{z-index:-1;width:30%;height:auto;margin:7% 0% 1% 1%;border-radius:15px;}
+#present img:hover{
+	-webkit-transform: none;transform: none;}
+
+/* -------------------------------------- / TOWERDEFENSE */
+.tdef{
+	margin:5% 0% 0% 4%;
+	float:left;
+	width:20%;}
+
+/* -------------------------------------- / INFORMATION */
+.info{margin:5% 0 5% 15%;float:left;width:30%;}
+
+/* -------------------------------------- / MILESTONES*/
+#tabMat{width:100%; background:white;font-family:DC !important;margin-bottom:3%;}
+.milestone{background:#7fb6d7;}
+.paulaMat{background:rgb(255, 158, 123); text-align: center; padding: 2%;}
+
+/* -------------------------------------- / CONTACT */
+#contact{
+	margin:3% 0% 2% 35%;
+	font-size:1.5em;
+	line-height:2em;
+	width:70%;}
+#contact label{
+	display:block;
+	font-size:0.9em;}
+#contact input{
+	width:50%;
+	border-radius:1.5em;}
+#contact textarea{
+	width:50%;
+	height:10%;}
+#contact button{
+	width:30%;
+	margin-top:3%;
+	border-radius:1.2em;}
+
+#pvli{
+	width: 45%;
+	height: 10%;
+	margin-top:15%;
+}
+
+/********************************************/
+/*										   */
+/*    MEDIAS QUERYS	- RESIZING            */
+/*										 */
+/****************************************/
+
+/* SIZE: 200 - 740 px */ 
+@media screen and (min-width:200px) and (max-width:740px){
+	/* GENERAL SETTINGS */	
+	body{width:95%;font-size:11px;}
+	img{border:2px solid white;border-radius:12px;}
+	h1{margin:8% 0% 8% 0%;}
+	h2{text-align:center;}
+
+	/* SPECIFIC SETTINGS: MENU */
+	.menu li{display: block;}
+	.menu li a{padding:5px 0px 5px 5px;}	
+	.menu ul{
+		width: 68%;				
+		top:-15px;				
+		left: 32%;}			
+		
+	.menu ul li a:hover{
+		padding-left:12px;
+		border-left:5px solid #7fb6d7;	
+		font-size:13px;}
+
+	/* SPECIFIC SETTINGS: ID */
+	#present{min-height:290px;}
+	#container{min-height:290px;}
+	#txt{min-height:290px;}
+	#nav{border-radius:0px;}
+
+	/* SPECIFIC SETTINGS: CLASS */		
+	.tdef{margin:10% 5% 0% 10%;width:30%;}
+	.info{margin:15% 0 5% 15%;width:30%;}				
+}
+
+
+/* SIZE: 740 - 1023 px */
+@media screen and (min-width:740px) and (max-width:1023px){
+	/* GENERAL SETTINGS */
+	body{width:80%;font-size:12px;}
+	img{border:3px solid white;border-radius:15px;}
+	h2{text-align:center;}
+	
+	/* SPECIFIC SETTINGS: MENU */
+	.menu ul {
+	width: 220px;				
+	top: 49px;}
+
+	/* SPECIFIC SETTINGS: ID */
+	#present{min-height:350px;}
+	#container{min-height:350px;}
+	#txt{min-height:350px;}
+	
+	/* SPECIFIC SETTINGS: CLASS */
+	.tdef{margin:5% 5% 0% 10%;width:30%;}
+	.info{margin:10% 0 5% 10%;width:35%;}	
+}
+
+/* SIZE: 1024 - 1279 px */
+@media screen and (min-width:1024px) and (max-width:1279px){
+	/* GENERAL SETTINGS */
+	body{width:75%;font-size:13px;}
+	img{border-radius:18px;}
+
+	/* SPECIFIC SETTINGS: MENU */
+	.menu ul {width: 230px;}
+
+	/* SPECIFIC SETTINGS: ID */
+	#present{min-height:450px;}
+	#container{min-height:450px;}
+	#txt{min-height:450px;}		
+}
+
+/* SIZE: > 1279 px */
+@media (min-width:1279px){
+	/* GENERAL SETTINGS */
+	body{width:70%;font-size:16px;}
+	img{border-radius:21px;}
+	
+	/* SPECIFIC SETTINGS: MENU */
+	.menu ul {width: 260px;}
+
+	/* SPECIFIC SETTINGS: ID */
+	#present{min-height:580px;}
+	#container{min-height:580px;}
+	#txt{min-height:580px;}
+}
