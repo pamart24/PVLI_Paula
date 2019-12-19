@@ -2,7 +2,7 @@ import Torre from './src/torre.js';
 import Base from './src/base.js';
 import Enemigo from './src/enemigo.js';
 import Nucleo from './src/nucleo.js';
-import Lelanto from './src/unidades/lelanto.js';
+import Ciclope from './src/unidades/ciclope.js';
 import {getNivelActual} from './src/mapa.js';
 
 //VARIABLES CONSTANTES
@@ -27,7 +27,6 @@ export default class Game extends Phaser.Scene {
     this.load.image("torreB", "./assets/torreB.png");
     this.load.image("opciones", "./assets/opciones.png");
     this.load.image("enemigo", "./assets/favicon.png");
-    this.load.image("unidad", "./assets/esqueleto.png");
     this.load.image("nucleo", "./assets/nucleoColor.png");
     this.load.image("fondo1", "./assets/MapaV2.png");
     this.load.image("fondo2", "./assets/MapaV3.png");
@@ -38,6 +37,8 @@ export default class Game extends Phaser.Scene {
     this.load.image("bala", "./assets/flecha.png");
     this.load.spritesheet("hydraIzq", "./assets/hydraIzq.png", { frameWidth: 64, frameHeight: 65 });
     this.load.spritesheet("hydraDer", "./assets/hydraDer.png", { frameWidth: 64, frameHeight: 59 });
+    this.load.spritesheet("ciclopeIzq", "./assets/ciclopeIzq.png", { frameWidth: 64.67, frameHeight: 63 });
+    this.load.spritesheet("ciclopeDer", "./assets/ciclopeDer.png", { frameWidth: 73, frameHeight: 56 });
     this.load.spritesheet("diabloIzq", "./assets/diabloIzq.png", { frameWidth: 32.67, frameHeight: 29 });
     this.load.spritesheet("diabloDer", "./assets/diabloDer.png", { frameWidth: 31.83, frameHeight: 18 });
   }
@@ -99,7 +100,9 @@ export default class Game extends Phaser.Scene {
     this.add.image(355, 710, "barraUnidades").setScale(1.5);
     graphics.fillRect(435, 638, 22, 145);
 
-    this.barraUnidades();
+    this.barraUnidades(0);
+    this.barraUnidades(1);
+    this.barraUnidades(2);
 
     //SITUAMOS EL NÚCLEO DELANTE DEL TODO
     this.children.bringToTop(this.nucleo);
@@ -123,6 +126,18 @@ export default class Game extends Phaser.Scene {
       frameRate: 4,
       repeat: -1
     });
+    this.anims.create({
+      key: 'ciclopeIzq',
+      frames: this.anims.generateFrameNumbers("ciclopeIzq", { start: 0, end: 5 }),
+      frameRate: 4,
+      repeat: -1
+   });
+   this.anims.create({
+     key: 'ciclopeDer',
+     frames: this.anims.generateFrameNumbers("ciclopeDer", { start: 0, end: 5 }),
+     frameRate: 4,
+     repeat: -1
+   });
     this.anims.create({
       key: 'diabloIzq',
       frames: this.anims.generateFrameNumbers("diabloIzq", { start: 0, end: 5 }),
@@ -256,57 +271,52 @@ export default class Game extends Phaser.Scene {
   }
 
   //GENERADOR DE UNIDADES ALEATORIAS PARA LA BARRA DE UNIDADES
-  //TIPOS:  0: LELANTO, 1: HYDRA, 2: EOLO
-  barraUnidades() {
-    //DISPONEMOS DE TRES CASILLAS
-    for (let i = 0; i < 3; i++) {
-      let tipo = Phaser.Math.Between(0, this.nivel - 1);
-      switch (tipo) {
-        //CREACIÓN DE UNIDADES
-        case 0:
-          this.casillaUnidad(i, "hydraDer");
-          break;
-        case 1:
-          this.casillaUnidad(i, "hydra");
-          break;
-        case 2:
-          this.casillaUnidad(i, "eolo");
-          break;
-      }
+  //TIPOS:  0: HYDRA, 1: CÍCLOPE, 2: EOLO
+  barraUnidades(casilla) {
+    let tipo = Phaser.Math.Between(0, this.nivel - 1);
+    switch (tipo) {
+      //CREACIÓN DE UNIDADES
+      case 0:
+        this.casillaUnidad(casilla, 84, 698, 1.5, "hydraDer");
+        break;
+      case 1:
+        this.casillaUnidad(casilla, 120, 698, 2.25, "ciclopeDer");
+        break;
     }
   }
     
   //CREA LA CASILLA DE LA UNIDAD DICHA
-  casillaUnidad(casilla, tipo) {
+  casillaUnidad(casilla, x, y, tam, tipo) {
     switch (casilla) {
       case 0:
-        this.unid0 = this.add.image(84, 698, tipo).setScale(1.5).setInteractive();
-        this.seleccUnidad(this.unid0, tipo);
+        this.unid0 = this.add.image(x, y, tipo).setScale(tam).setInteractive();
+        this.seleccUnidad(casilla, this.unid0, tipo);
         break;
       case 1:
-        this.unid1 = this.add.image(219, 698, tipo).setScale(1.5).setInteractive();;
-        this.seleccUnidad(this.unid1, tipo);
+        this.unid1 = this.add.image(x + 135, y, tipo).setScale(tam).setInteractive();;
+        this.seleccUnidad(casilla, this.unid1, tipo);
         break;
       case 2:
-        this.unid2 = this.add.image(354, 698, tipo).setScale(1.5).setInteractive();;;
-        this.seleccUnidad(this.unid2, tipo);
+        this.unid2 = this.add.image(x + 270, y, tipo).setScale(tam).setInteractive();;;
+        this.seleccUnidad(casilla, this.unid2, tipo);
         break;
     }
   }
   
   //SELECCIONA UNIDAD
-  seleccUnidad(unidX, tipo) {
+  seleccUnidad(casilla, unidX, tipo) {
     unidX.on('pointerdown', pointer => {
       if (this.unidCargada) {
         switch (tipo) {
           case "hydraDer":
-            this.unidades.add(new Lelanto(this, this.posXUnid, this.posYUnid, this.posRelativa));
+            this.unidades.add(new Hydra(this, this.posXUnid, this.posYUnid, this.posRelativa));
             break;
-          case "hydra":
-            break;
-          case "eolo":
+          case "ciclopeDer":
+            this.unidades.add(new Ciclope(this, this.posXUnid, this.posYUnid, this.posRelativa));
             break;
         }
+        this.barraUnidades(casilla);
+        unidX.destroy();
         this.tiempoUltUnid = 0;
         this.unidCargada = false;
       }

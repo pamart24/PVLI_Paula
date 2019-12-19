@@ -118,6 +118,7 @@ export default class Unidad extends GameObjectsGO {
     }
 
     preUpdate(time, delta) {
+        //Añadir velocidad de movimiento
         this.mov();
     }
 }
