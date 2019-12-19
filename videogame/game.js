@@ -39,6 +39,7 @@ export default class Game extends Phaser.Scene {
     this.load.spritesheet("hydraIzq", "./assets/hydraIzq.png", { frameWidth: 64, frameHeight: 65 });
     this.load.spritesheet("hydraDer", "./assets/hydraDer.png", { frameWidth: 64, frameHeight: 59 });
     this.load.spritesheet("ciclopeIzq", "./assets/ciclopeIzq.png", { frameWidth: 64.67, frameHeight: 63 });
+    this.load.spritesheet("ciclopeDer", "./assets/ciclopeDer.png", { frameWidth: 64.67, frameHeight: 62 });
     this.load.spritesheet("diabloIzq", "./assets/diabloIzq.png", { frameWidth: 32.67, frameHeight: 29 });
     this.load.spritesheet("diabloDer", "./assets/diabloDer.png", { frameWidth: 31.83, frameHeight: 18 });
   }
@@ -131,7 +132,13 @@ export default class Game extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers("ciclopeIzq", { start: 0, end: 5 }),
       frameRate: 4,
       repeat: -1
-   });
+    });
+    this.anims.create({
+      key: 'ciclopeDer',
+      frames: this.anims.generateFrameNumbers("ciclopeDer", { start: 0, end: 5 }),
+      frameRate: 4,
+      repeat: -1
+    });
     this.anims.create({
       key: 'diabloIzq',
       frames: this.anims.generateFrameNumbers("diabloIzq", { start: 0, end: 5 }),
@@ -274,7 +281,7 @@ export default class Game extends Phaser.Scene {
         this.casillaUnidad(casilla, 84, 698, 1.5, "hydraDer");
         break;
       case 1:
-        this.casillaUnidad(casilla, 120, 698, 2.25, "ciclopeIzq");
+        this.casillaUnidad(casilla, 90, 698, 2.25, "ciclopeDer");
         break;
     }
   }
@@ -305,7 +312,7 @@ export default class Game extends Phaser.Scene {
           case "hydraDer":
             this.unidades.add(new Hydra(this, this.posXUnid, this.posYUnid, this.posRelativa));
             break;
-          case "ciclopeIzq":
+          case "ciclopeDer":
             this.unidades.add(new Ciclope(this, this.posXUnid, this.posYUnid, this.posRelativa));
             break;
         }

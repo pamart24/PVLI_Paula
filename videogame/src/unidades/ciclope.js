@@ -10,6 +10,8 @@ export default class Ciclope extends Unidad {
         //VARIABLES AUXILIARES
         this.vida = 250;
         this.game.tiempoUnid = 10000;    //ACTUALIZAMOS EL VALOR EN GAME.JS
+        this.velocidad = 80;     //CUANTO MENOR ES EL VALOR MAYOR ES LA VELOCIDAD
         this.animIzq = 'ciclopeIzq';
+        this.animDer = 'ciclopeDer';
     }
 }

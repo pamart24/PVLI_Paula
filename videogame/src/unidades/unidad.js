@@ -20,6 +20,7 @@ export default class Unidad extends GameObjectsGO {
         this.enemigo = undefined;
         this.funcion = 0;
         this.cambiaAnim = true;
+        this.velAux = 0;
 
         //LA ANIMACIÓN SE HACE GENERANDO UN SPRITE ENCIMA DE LA UNIDAD, QUE TIENE UNA TEXTURA VACÍA, PORQUE LA ANIMACIÓN AL HACERLA CON UNA CLASE EN LUGAR DE UN SPRITE
         //ME HA PARECIDO IMPOSIBLE DE CONSEGUIR. CON AYUDA DE COMPAÑEROS QUE LO HAN LOGRADO TAMPOCO LO HE CONSEGUIDO. HE PROCEDIDO A UTILIZAR EL MÉTODO QUE ME ACONSEJÓ DAVID CZEPIEL
@@ -38,15 +39,21 @@ export default class Unidad extends GameObjectsGO {
                     this.setPosition(this.t * 25, this.n + 150 * Math.sin(this.t/7));
                     this.animacion.setPosition(this.t * 25, this.n + 150 * Math.sin(this.t/7));
                     this.t -= 0.1;
-                    if (this.t <= 10) { this.pausa = true; }
+                    if (this.t <= 10) { this.pausa = true; this.animacion.anims.stop(); }
                     break;
                 case 2:
                     //DISPONEMOS DE 2 CAMINOS EN ESTE NIVEL (DIR)
                     //CADA CAMINO ESTÁ FORMADO POR 2 FUNCIONES CADA UNO
                     if (this.funcion == 0) {
                         if (this.cambiaAnim) {
-                            if (this.dir == 0) this.animacion.play(this.animDer);
-                            if (this.dir == 1) this.animacion.play(this.animIzq);
+                            if (this.dir == 0) { 
+                                this.animacion.play(this.animDer);
+                                this.t = 7;
+                            }
+                            if (this.dir == 1) {
+                                this.animacion.play(this.animIzq);
+                                this.t = -7;
+                            }
                             this.cambiaAnim = false;
                         }
                         let y0 = Math.sqrt(1 - (Math.pow(Math.abs(this.t/7) - 1, 2)));
@@ -77,7 +84,7 @@ export default class Unidad extends GameObjectsGO {
                         if (this.dir == 0) this.t -= 0.1;
                         if (this.dir == 1) this.t += 0.1;
                     }
-                    if (this.y >= 700) { this.pausa = true; }
+                    if (this.y >= 700) { this.pausa = true; this.animacion.anims.stop(); }
                     break;
             }
         }
@@ -119,6 +126,12 @@ export default class Unidad extends GameObjectsGO {
 
     preUpdate(time, delta) {
         //Añadir velocidad de movimiento
-        this.mov();
+        if (this.velAux <= 0) {
+            this.mov();
+            this.velAux = this.velocidad;
+        }
+        else {
+            this.velAux -= delta;
+        }
     }
 }

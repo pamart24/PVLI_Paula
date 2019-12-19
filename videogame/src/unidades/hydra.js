@@ -11,6 +11,7 @@ export default class Hydra extends Unidad {
         //VARIABLES AUXILIARES
         this.vida = 110;
         this.game.tiempoUnid = 5000;    //ACTUALIZAMOS EL VALOR EN GAME.JS
+        this.velocidad = 0;     //CUANTO MENOR ES EL VALOR MAYOR ES LA VELOCIDAD
         this.animIzq = 'hydraIzq';
         this.animDer = 'hydraDer';
     }
