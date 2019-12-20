@@ -1,4 +1,4 @@
-import { sigNivelMax, sigNivelActual, getNivelActual, getNivelMax } from './mapa.js';
+import { sigNivelMax, sigNivelActual, getNivelActual, getNivelMax } from '../mapa.js';
 
 export default class Victoria extends Phaser.Scene {
     constructor() {
