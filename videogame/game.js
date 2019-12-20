@@ -13,21 +13,32 @@ const costeTorreB = 200; //COSTE DE AUMENTAR A TORRE_B
 const costeTorreAA = 120; //COSTE DE MEJORAR LA TORRE_A
 const costeTorreBB = 150; //COSTE DE MEJORAR LA TORRE_B
 
+const config = {
+  mute: false,
+  volume: 0.1,
+  rate: 1,
+  detune: 0,
+  seek: 0,
+  loop: true,
+  delay: 0
+};
+
 export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'main' });
     this.nivel = 1;
+    this.musicaNivel;
   }
   
   preload() {  
     this.load.on("complete", () => { this.scene.start("main"); });
     this.nivel = getNivelActual();
+    this.load.audio("musicaNivel", "./music/musicaNivel.mp3");
     this.load.image("base", "./assets/circulo_base.png");
     this.load.image("torre", "./assets/torreBase.png");
     this.load.image("torreA", "./assets/torreA.png");
     this.load.image("torreB", "./assets/torreB.png");
     this.load.image("opciones", "./assets/opciones.png");
-    this.load.image("enemigo", "./assets/favicon.png");
     this.load.image("nucleo", "./assets/nucleoColor.png");
     this.load.image("fondo1", "./assets/MapaV2.png");
     this.load.image("fondo2", "./assets/MapaV3.png");
@@ -69,6 +80,18 @@ export default class Game extends Phaser.Scene {
     this.numEnems = 0;  //LLEVA EL RECUENTO DE LOS ENEMIGOS DE CADA OLEADA QUE VAN APARECIENDO
     this.numOleada = 1; //OLEADA ACTUAL
     this.vidaNucleo = 1000;
+
+    this.musicaNivel = this.sound.add("musicaNivel", config);
+    
+    //LA MÚSICA NO REACCIONABA ANTE LOS STOP() NI LOS PAUSE() NI NADA
+    //POR ELLO SÓLO PUDE PONER UN SONIDO, Y DECIDÍ PONERLO MIENTRAS SE JUEGA UNA PARTIDA
+    //A SU VEZ, TUVE QUE HACERLO MEDIANTE SETMUTE(), QUE ES LA ÚNICA MANERA QUE ME FUNCIONABA
+    if (this.sound.mute) {
+      this.sound.setMute(false);
+    }
+    else {
+      this.musicaNivel.play();
+    }
     
     //ARRAYS DE OBJETOS DEL JUEGO
     this.bases = this.add.group();
@@ -153,16 +176,23 @@ export default class Game extends Phaser.Scene {
     });
   }
   
+  resumeGame() {
+    this.sound.setMute(false);
+  }
+
   update(time, delta) {
     if (this.pausa.isDown) {
+      this.sound.setMute(true);
       this.scene.launch("Pausa");
       this.scene.pause();
       this.pausa.isDown = false;
     }
     if (this.derrota == true) {
+      this.sound.setMute(true);
       this.scene.start("Derrota");
     }  
     if (this.victoria == true) {
+      this.sound.setMute(true);
       this.scene.start("Victoria");
     }
 
@@ -400,7 +430,7 @@ export default class Game extends Phaser.Scene {
         if (this.ptosExp >= costeTorreAA){
           this.torres.remove(object);
           object.destroy();
-          this.torres.add(new Torre(this, p, q, 'AA', "torreAA"));
+          this.torres.add(new Torre(this, p, q, 'AA', "torreA"));
           this.ptosExp -= costeTorreAA;
           object.muestraPtos(this.ptosExp);
         }
@@ -410,7 +440,7 @@ export default class Game extends Phaser.Scene {
         if (this.ptosExp >= costeTorreBB){
           this.torres.remove(object);
           object.destroy();
-          this.torres.add(new Torre(this, p, q, 'BB', "torreBB"));
+          this.torres.add(new Torre(this, p, q, 'BB', "torreB"));
           this.ptosExp -= costeTorreBB;
           object.muestraPtos(this.ptosExp);
         }

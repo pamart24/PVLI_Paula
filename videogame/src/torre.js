@@ -26,7 +26,7 @@ export default class Torre extends GameObjectsGO {
                 this.cadencia = this.cadencia - 20;
                 break;
             case 'B':
-                this.setScale(0.2);
+                this.setScale(0.5);
                 this.rango = 250;
                 this.daño = this.daño + 15;
                 this.cadencia = this.cadencia + 20;
@@ -38,7 +38,7 @@ export default class Torre extends GameObjectsGO {
                 this.cadencia = this.cadencia - 30;
                 break;
             case 'BB':
-                this.setScale(1);
+                this.setScale(0.5);
                 this.rango = 300;
                 this.daño = this.daño + 30;
                 this.cadencia = this.cadencia + 40;

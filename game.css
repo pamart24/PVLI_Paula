@@ -3,6 +3,7 @@ body {
 	font: 14px "Open Sans", Helvetica, Verdana, Arial, Sans-serif;
 	width:75%;
 	margin:0 auto;
+	color:rgb(99, 47, 112);
 }
 li {
   display: inline-block;
@@ -11,7 +12,6 @@ a {
   display: inline-block;
 	padding:15px;				
 	font-weight:bold;
-  color:rgb(99, 47, 112);
 	text-decoration:none;	
 }				
 a:hover {
@@ -30,5 +30,14 @@ a:hover {
 	min-height:40px;
 	height:auto;
 	float:left;
+	overflow:hidden;
+}
+
+#contacto {
+	background:#f8eaaa;
+	padding:15px;
+	width:98%;
+	min-height:100px;
+	height:auto;
 	overflow:hidden;
 }

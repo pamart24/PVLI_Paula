@@ -25,7 +25,7 @@ export default class Pausa extends Phaser.Scene {
     }
 
     update() {
-        //BOTÓN PARA LA SIGUIENTE PARTIDA
+        //BOTÓN PARA REAUNUDAR
         this.boton1.on('pointerover', pointer => {
             this.boton1.destroy();
             this.boton2.destroy();
@@ -35,7 +35,8 @@ export default class Pausa extends Phaser.Scene {
                 this.boton1.destroy();
                 this.boton1 = this.add.image(515, 380, "siguiente2").setScale(0.7).setInteractive();
                 this.boton1.on('pointerup', pointer => {
-                    //SIGUIENTE NIVEL AL JUGADO
+                    var g = this.scene.get("main");
+                    g.resumeGame();
                     this.scene.resume("main");
                     this.scene.stop("Pausa");
                 });
